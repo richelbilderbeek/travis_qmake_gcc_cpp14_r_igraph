@@ -1,27 +1,17 @@
 #include <fstream>
 #include <iostream>
 
-auto create_r_script_text(const std::string& png_filename) noexcept
+auto create_r_script_text() noexcept
 {
   return
-    "png(filename = \"" + png_filename + "\")\n"
-    "plot(sin, -pi, 2*pi, main = \"Sine\")\n"
-    "dev.off()\n"
+    R"(install.packages("DAISIE", repos = "http://cran.uk.r-project.org"))"
   ;
 }
 
-void create_r_script(
-  const std::string& png_filename, const std::string& r_filename) noexcept
+void create_r_script(const std::string& r_filename) noexcept
 {
   std::ofstream f(r_filename);
-  f << create_r_script_text(png_filename);
-}
-
-bool file_exists(const std::string& filename)
-{
-  std::fstream f;
-  f.open(filename.c_str(),std::ios::in);
-  return f.is_open();
+  f << create_r_script_text();
 }
 
 int run_r_script(const std::string& r_filename)
@@ -31,9 +21,7 @@ int run_r_script(const std::string& r_filename)
 
 int main()
 {
-  const std::string png_filename{"travis_qmake_gcc_cpp14_r.png"};
-  const std::string r_filename{"travis_qmake_gcc_cpp14_r.R"};
-  create_r_script(png_filename, r_filename);
-  run_r_script(r_filename);
-  return file_exists(png_filename) ? 0 : 1;
+  const std::string r_filename{"travis_qmake_gcc_cpp14_r_igraph.R"};
+  create_r_script(r_filename);
+  return run_r_script(r_filename);
 }
