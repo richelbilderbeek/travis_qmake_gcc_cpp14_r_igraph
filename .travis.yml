@@ -13,7 +13,7 @@ install:
   - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-5 90
   # R
   - sudo apt-get install r-base r-base-dev
-  - sudo Rscript -e 'install.packages("DAISIE", repos = "http://cran.r-project.org")'
+  - sudo Rscript -e 'install.packages(c("ape", "phytools","DDD"),"DAISIE", repos = "http://cran.r-project.org")'
   #- sudo Rscript -e 'install.packages("DAISIE", repos = "http://cran.uk.r-project.org")'
 
 
