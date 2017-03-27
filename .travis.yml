@@ -13,8 +13,9 @@ install:
   - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-5 90
   # R
   - sudo apt-get install r-base r-base-dev
+  - Rscript -e 'install.packages("DAISIE", repos = "http://cran.uk.r-project.org")'
 
 script: 
   - qmake
   - make
-  - ./travis_qmake_gcc_cpp14_r_igraph
+  #- ./travis_qmake_gcc_cpp14_r_igraph
