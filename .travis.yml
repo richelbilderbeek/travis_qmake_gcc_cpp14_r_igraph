@@ -1,6 +1,6 @@
 language: cpp
 compiler: gcc
-dist: trusty
+dist: bionic
 
 before_install:
   # C++14
